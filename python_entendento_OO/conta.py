@@ -1,17 +1,39 @@
 # definir receita / class
+#encapsulamento:
+# para tornar um atributo privado, deve-se preceder seu nome com 2 underscores __ ; exemplo __numero
 class Conta:
     def __init__(self, numero, titular, saldo, limite): # função construtora; 
-        print(f'Construindo objeto . {self}{self}   ..') # self é a referênca q sabe onde encontrar o objeto q está sendo contruido em memória
-        self.numero = numero
-        self.titular = titular
-        self.saldo = saldo
-        self.limite = limite
+        print(f'Construindo objeto . {self}..') # self é a referênca q sabe onde encontrar o objeto q está sendo contruido em memória
+        self.__numero = numero
+        self.__titular = titular
+        self.__saldo = saldo
+        self.__limite = limite
 
     def extrato(self):
-        print(f'Saldo {self.saldo} do titular {self.titular}.')
+        print(f'Saldo {self.__saldo} do titular {self.__titular}.')
+    
+    def transfere(self, valor, destino):
+        self.saca(valor)
+        destino.deposita(valor)
 
     def deposita(self, valor):
-        self.saldo += valor
+        self.__saldo += valor
     
     def saca(self, valor):
-        self.saldo -= valor
+        self.__saldo -= valor
+
+conta = Conta(123, 'Ivan', 1000,2000)
+
+conta2 = Conta(321,'Jai', 2000,4000)
+
+conta.extrato()
+conta2.extrato()
+
+print(conta, conta2)
+
+conta2.transfere(200 ,conta)
+
+conta.extrato()
+conta2.extrato()
+
+
