@@ -20,12 +20,16 @@ class Conta:
         self.__saldo += valor
     
     def saca(self, valor):
-        self.__saldo -= valor
-
-    def get_saldo(self):
+        if(valor<=(self.__saldo + self.__limite)):
+            self.__saldo -= valor
+        else:
+            print(f'O valor {valor} passou o limite')
+        
+    @property
+    def saldo(self):
         return self.__saldo
-    
-    def get_titular(self):
+    @property
+    def titular(self):
         return self.__titular
     @property
     def limite(self):
