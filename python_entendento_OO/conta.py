@@ -22,6 +22,18 @@ class Conta:
     def saca(self, valor):
         self.__saldo -= valor
 
+    def get_saldo(self):
+        return self.__saldo
+    
+    def get_titular(self):
+        return self.__titular
+    @property
+    def limite(self):
+        return self.__limite
+    @limite.setter
+    def limite(self, limite):
+        self.__limite = limite
+""" 
 conta = Conta(123, 'Ivan', 1000,2000)
 
 conta2 = Conta(321,'Jai', 2000,4000)
@@ -35,5 +47,8 @@ conta2.transfere(200 ,conta)
 
 conta.extrato()
 conta2.extrato()
+conta.get_limite()
+conta.get_saldo()
+conta.get_titular() """
 
 
