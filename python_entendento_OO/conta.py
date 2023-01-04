@@ -8,6 +8,7 @@ class Conta:
         self.__titular = titular
         self.__saldo = saldo
         self.__limite = limite
+        self.__codigo_banco = '001'
 
     def extrato(self):
         print(f'Saldo {self.__saldo} do titular {self.__titular}.')
@@ -19,8 +20,13 @@ class Conta:
     def deposita(self, valor):
         self.__saldo += valor
     
+    #método privado, só pode ser usado dentro da classe
+    def __pode_sacar(self,valor_a_sacar ): 
+        valor_dispinivel_de_saque = self.__saldo + self.__limite
+        return valor_a_sacar <= valor_dispinivel_de_saque
+
     def saca(self, valor):
-        if(valor<=(self.__saldo + self.__limite)):
+        if(self.__pode_sacar(valor)):
             self.__saldo -= valor
         else:
             print(f'O valor {valor} passou o limite')
